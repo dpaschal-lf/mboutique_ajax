@@ -1,13 +1,28 @@
+var pages={
+    Welcome: 
+        {pageUrl : 'home.html'},
+    "Our Macarons" : 
+        { pageUrl : 'macarons.html'},
+    "Gifts & Parties" : 
+        { pageUrl :'gifts-parties.html'},
+    Contact : 
+        { pageUrl : 'contact.html'}
+};
+
 $("document").ready(function(){
 
 //do stuff when the document is ready!
-    $(".main-nav li").each(function(){
+    $(".main-nav li a").each(function(){
         //do something to each item found
         $(this).click(function(){
-            console.log("My url if ",$(this).attr('data-url'));
-            load_page($(this).attr('data-url'));
+
+            var my_page = pages[$(this).text()];
+            console.log(my_page);
+            load_page(my_page.pageUrl);
         });
+
     });
+    
 });
 
 
