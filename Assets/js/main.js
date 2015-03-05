@@ -54,28 +54,65 @@ function load_page(page_url){
     });
     
 }
-console.log("we have stuff");
 function validate_contact(){
     var contact_inputs = $("#contact_form input, #contact_form textarea");
     console.log(contact_inputs);
+    //keep track of how many errors there are
+    var error_count = 0;
     $(contact_inputs).each(function(){
         var str='';
         var regex=null;
         var error_msg = '';
         switch($(this).attr('name')){
                 case 'name':
-                    var str = $(this).val();
-                    var regex = /[a-zA-Z]{3,}/;
-                    error_msg="Must be at least 3 characters long, no numbers or characters"
+                    str = $(this).val();
+                    regex = /[a-zA-Z]{3,}/;
+                    error_msg="Must be at least 3 characters long, no numbers or characters";
                     break;
+                case 'email':
+                    str = $(this).val();
+                    regex = null;
+                    error_msg="";
+                    break;
+                case 'phone':
+                    str = $(this).val();
+                    regex = null;
+                    error_msg="";
+                    break;
+                case 'subject':
+                    str = $(this).val();
+                    regex = null;
+                    error_msg="";
+                    break;
+                case 'comments':
+                    str = $(this).val();
+                    regex = /.{3,250}/;
+                    error_msg="Comments can only be between 3 and 250 characters";
+                    break;
+                default:
         }
-        if(str.match(regex)===null){
-            alert($(this).attr('name')+":"+error_msg)
+        if(regex!==null){  //if there is a validation rule to check
+            if(str.match(regex)===null){ //if there was a validation error
+                alert($(this).attr('name')+":"+error_msg); //send error message
+                error_count++;  //increase error count
+            }
+            
+            
         }
     });
+    console.log("error count " +error_count);
+    if(error_count==0){  //if no errors
+        send_message();   //trigger our form submission function
+    }
+    else {
+        return false;  //return false, so that the form submit will fail
+    }
     
 }
 
+function send_message(){  //dummy function for sending message
+    console.log('to be continued...');
+}
 
 
 
