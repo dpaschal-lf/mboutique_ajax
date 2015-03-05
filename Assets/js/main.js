@@ -54,6 +54,27 @@ function load_page(page_url){
     });
     
 }
+console.log("we have stuff");
+function validate_contact(){
+    var contact_inputs = $("#contact_form input, #contact_form textarea");
+    console.log(contact_inputs);
+    $(contact_inputs).each(function(){
+        var str='';
+        var regex=null;
+        var error_msg = '';
+        switch($(this).attr('name')){
+                case 'name':
+                    var str = $(this).val();
+                    var regex = /[a-zA-Z]{3,}/;
+                    error_msg="Must be at least 3 characters long, no numbers or characters"
+                    break;
+        }
+        if(str.match(regex)===null){
+            alert($(this).attr('name')+":"+error_msg)
+        }
+    });
+    
+}
 
 
 
