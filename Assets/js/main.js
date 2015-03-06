@@ -59,6 +59,7 @@ function validate_contact(){
     console.log(contact_inputs);
     //keep track of how many errors there are
     var error_count = 0;
+    $("#contact_form .error_msg").remove();
     $(contact_inputs).each(function(){
         var str='';
         var regex=null;
@@ -94,7 +95,9 @@ function validate_contact(){
         if(regex!==null){  //if there is a validation rule to check
             if(str.match(regex)===null){ //if there was a validation error
                 //alert($(this).attr('name')+":"+error_msg); //send error message
-                $(this).parent().find('.error_msg').html(error_msg);
+                var error_span = $("<span/>").addClass('error_msg').text(error_msg);
+                error_span.insertAfter($(this));
+                //$(this).parent().find('.error_msg').html(error_msg);
                 error_count++;  //increase error count
             }
             
