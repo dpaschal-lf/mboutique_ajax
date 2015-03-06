@@ -93,7 +93,8 @@ function validate_contact(){
         }
         if(regex!==null){  //if there is a validation rule to check
             if(str.match(regex)===null){ //if there was a validation error
-                alert($(this).attr('name')+":"+error_msg); //send error message
+                //alert($(this).attr('name')+":"+error_msg); //send error message
+                $(this).parent().find('.error_msg').html(error_msg);
                 error_count++;  //increase error count
             }
             
