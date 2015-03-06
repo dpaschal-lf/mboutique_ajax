@@ -109,8 +109,13 @@ function validate_contact(){
         if(regex!==null){  //if there is a validation rule to check
             if(str.match(regex)===null){ //if there was a validation error
                 //alert($(this).attr('name')+":"+error_msg); //send error message
-                var error_span = $("<span/>").addClass('error_msg').text(error_msg);
-                error_span.insertAfter($(this));
+                var error_div = $("<div/>").addClass('error_msg alert alert-danger alert-dismissible').text(error_msg);
+                var close_button = $("<button/>",{type:'button',class:'close',"data-dismiss":'alert','aria-label':'Close'});
+                var span = $("<span/>",{'aria-hidden':'true'}).html('&times;');
+                close_button.append(span);
+                error_div.append(close_button);
+                                        
+                error_div.insertAfter($(this));
                 //$(this).parent().find('.error_msg').html(error_msg);
                 error_count++;  //increase error count
             }
