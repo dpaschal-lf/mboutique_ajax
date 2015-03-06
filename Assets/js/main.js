@@ -9,6 +9,19 @@ var pages={
         { pageUrl : 'contact.html'}
 };
 
+//beginnings of an object for use with error validation
+var input_validation = {
+    name: 
+        {regex: /[a-zA-Z]{3,}/,
+         error_msg:"Must be at least 3 characters long, no numbers or characters"},
+    email: 
+        {regex: /[a-zA-Z]{3,}/,
+         error_msg:"Must be at least 3 characters long, no numbers or characters"},
+    phone: 
+        {regex: /[a-zA-Z]{3,}/,
+         error_msg:"Must be at least 3 characters long, no numbers or characters"},
+};
+
 $("document").ready(function(){
 
 //do stuff when the document is ready!
@@ -64,6 +77,7 @@ function validate_contact(){
         var str='';
         var regex=null;
         var error_msg = '';
+        //input_validation[$(this).attr('name')];  //beginnings of USING the object for input validation
         switch($(this).attr('name')){
                 case 'name':
                     str = $(this).val();
